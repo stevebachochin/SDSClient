@@ -1,0 +1,87 @@
+<div id="summary" class="section panel panel-primary">
+  <div class="loader-overlay" *ngIf="resourceLoaded">
+    <div>
+      <mat-progress-bar style="margin:0 auto;" mode="indeterminate"></mat-progress-bar>
+    </div>
+  </div>
+  <div class="panel-heading"> Product Summary</div>
+  <div class="panel-srch">
+    <div class="col-sm-5 column">
+      <div class="col-sm-6 fmlabelright">Search Field Name</div>
+      <div class="col-sm-6 fld">
+        <select [(ngModel)]="querySearchName">
+          <option value="Product1">Product</option>
+          <option value="Manufacturer">Manufacturer</option>
+          <option value="ManufacturerNo">Manufacturer No.</option>
+          <option value="MaterialNumber">CryoLife Material No.</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-4 column">
+      <div class="col-sm-4 fmlabelright">Search Text</div>
+      <div class="col-sm-8 fld"><input [(ngModel)]="querySearch" placeholder="enter search text" (keyup.enter)="searchProducts(querySearchName, querySearch)" required></div>
+    </div>
+
+
+    <div class="col-sm-3 column">
+      <div class="col-sm-6 hdr buttton"><button type="button" (click)="searchProducts(querySearchName, querySearch)" [disabled]="querySearch===''" class="btn btn-default"><span class='glyphicon glyphicon-ok-circle'></span>Search</button></div>
+      <div class="col-sm-6 hdr buttton"><button type="button" (click)="clearSearch()" class="btn btn-default"><span class='glyphicon glyphicon-ok-circle'></span>Clear</button></div>
+    </div>
+
+
+
+  </div>
+    <div class="container">
+
+      <table mat-table matSortActive="Product1" matSortDirection="asc" matSortDisableClear class="datatable" [dataSource]="(dataSource|async)" matSort>
+
+        <ng-container matColumnDef="Product1">
+          <th *matHeaderCellDef mat-sort-header>Product</th>
+          <td *matCellDef="let item"><a routerLink="/product/{{item.id}}">{{item.Product1}}</a></td>
+        </ng-container>
+        <ng-container matColumnDef="Manufacturer">
+          <th *matHeaderCellDef mat-sort-header>Manufacturer</th>
+          <td *matCellDef="let item" (click)="onRowClicked(item)">{{item.Manufacturer}}</td>
+        </ng-container>
+        <ng-container matColumnDef="ManufacturerNo">
+          <th *matHeaderCellDef mat-sort-header>Manufacturer #</th>
+          <td *matCellDef="let item" (click)="onRowClicked(item)">{{item.ManufacturerNo}}</td>
+        </ng-container>
+        <ng-container matColumnDef="MaterialNumber">
+          <th *matHeaderCellDef mat-sort-header>CryoLife Material #</th>
+          <td *matCellDef="let item" (click)="onRowClicked(item)">{{item.MaterialNumber}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Health">
+          <th *matHeaderCellDef>H</th>
+          <td *matCellDef="let item" (click)="onRowClicked(item)">{{item.Health}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Flammibility">
+          <th *matHeaderCellDef>F</th>
+          <td *matCellDef="let item" (click)="onRowClicked(item)">{{item.Flammibility}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Reactive">
+          <th *matHeaderCellDef>C</th>
+          <td *matCellDef="let item" (click)="onRowClicked(item)">{{item.Reactive}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Protection">
+          <th *matHeaderCellDef>PPE</th>
+          <td *matCellDef="let item" (click)="onRowClicked(item)">{{item.Protection}}</td>
+        </ng-container>
+        <ng-container matColumnDef="DateRevision">
+          <th *matHeaderCellDef>Revision Date</th>
+          <td *matCellDef="let item" (click)="onRowClicked(item)">{{item.DateRevision | date:'MM/dd/yyyy'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="deletebutton">
+          <th *matHeaderCellDef>&nbsp;</th>
+          <td *matCellDef="let item"><button class="btn btn-xs btn-primary" (click)="deleteProduct(item.id)"><span class='glyphicon glyphicon-trash'></span></button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <tr class="datarow" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      </table>
+      <mat-paginator [length]="totalCount" [pageSize]="5"
+                     [pageSizeOptions]="[5, 10, 20]" (page)="paging($event)"></mat-paginator>
+    </div>
+  </div>

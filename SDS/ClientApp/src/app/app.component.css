@@ -1,0 +1,22 @@
+#wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+#innerwrapper {
+  display: inline-block;
+  width:95%;
+
+}
+
+.row {
+  margin-right: 0px; 
+  margin-left: 0px; 
+}
+
+
+.panel-primary > .panel-heading {
+  color: #337ab7;
+  background-color: transparent;
+  border-color: transparent;
+}

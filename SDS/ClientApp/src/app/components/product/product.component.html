@@ -1,0 +1,281 @@
+<div id="summary" class="section panel panel-primary">
+
+  <div *ngIf="!submitted">
+
+    <form (ngSubmit)="updateProduct(product)" #productForm="ngForm">
+
+      <div class="panel-heading">
+        <div class="col-sm-6 hdr">Product Summary</div>
+        <div class="col-sm-6 hdr buttton"><button type="submit" class="btn btn-default" [disabled]="!productForm.valid"><span class='glyphicon glyphicon-ok-circle'></span>Submit</button><a [routerLink]="['/products']"><button class="btn btn-default"><span class='glyphicon glyphicon-circle-arrow-left'></span>Back</button></a></div>
+      </div>
+
+
+      <div class="container0">
+
+        <div>
+
+          <div class="row">
+            <div class="col-sm-6 column">
+              <div class="col-sm-12 fmlabel2">Product Name</div>
+              <div class="col-sm-12 fld"> <input type="text" maxlength="30" minlength="3" class="form-control" name="product" #name="ngModel" [(ngModel)]="product.Product1" required></div>
+            </div>
+            <div class="col-sm-6 column">
+              <div class="col-sm-12 fmlabel2">Synonyms</div>
+              <div class="col-sm-8 fld"><input type="text" maxlength="30" class="form-control" name="commonName" #name="ngModel" [(ngModel)]="product.CommonName" required></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 column">
+              <div class="col-sm-12 fmlabel2">Manufacturer</div>
+              <div class="col-sm-12 fld"><input type="text" maxlength="30" class="form-control" name="manufacturer" #name="ngModel" [(ngModel)]="product.Manufacturer" required></div>
+            </div>
+            <div class="col-sm-6 column">
+              <div class="col-sm-12 fmlabel2">Manufacturer No.</div>
+              <div class="col-sm-12 fld"> <input type="text" maxlength="30" class="form-control" name="manufacturerNo" #name="ngModel" [(ngModel)]="product.ManufacturerNo" required></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 column">
+              <div class="col-sm-12 fmlabel2">CryoLife Material Number</div>
+              <div class="col-sm-12 fld"><input type="text" maxlength="30" class="form-control" name="materialNumber" #name="ngModel" [(ngModel)]="product.MaterialNumber" required></div>
+            </div>
+            <div class="col-sm-6 column">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 column">
+              <div class="col-sm-12 fmlabel2">Revision Date</div>
+              <div class="col-sm-12 fld"><input type="date" class="form-control" name="dateRevision" #name="ngModel" [ngModel]="product.DateRevision  | date:'yyyy-MM-dd'" (ngModelChange)="product.DateRevision = $event" required></div>
+            </div>
+            <div class="col-sm-6 column">
+              <div class="col-sm-12 fmlabel2">Last Reviewed Internally</div>
+              <div class="col-sm-12 fld"><input type="date" class="form-control" name="dateReviewed" #name="ngModel" [ngModel]="product.DateReviewed  | date:'yyyy-MM-dd'" (ngModelChange)="product.DateReviewed = $event" required></div>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="panel-heading">
+          <div class="col-sm-12 hdr">HMIG/HMIS</div>
+        </div>
+
+
+        <div class="container1">
+          <div class="ratings">
+            <!--health-->
+
+
+            <div class="row">
+              <div class="col-sm-10 column">
+                <div class="col-sm-3 fmlabel2">Health</div>
+                <div class="col-sm-9 fmdata">
+                  <select [ngModel]="product.Health" name="health" #name="ngModel" (ngModelChange)="product.Health = $event" class="select-control" required>
+                    <option value="">-- select --</option>
+                    <option *ngFor="let health of healthlist" value={{health.Rating}}>{{health.Name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-2 column lnk">
+                <div class="col-sm-2 fmlabel2left">&nbsp;</div>
+              </div>
+
+            </div>
+
+
+            <!--flamibility-->
+            <div class="row">
+              <div class="col-sm-10 column">
+                <div class="col-sm-3 fmlabel2">Flammibility</div>
+                <div class="col-sm-9 fmdata">
+                  <select [ngModel]="product.Flammibility" name="flammibility" #name="ngModel" (ngModelChange)="product.Flammibility = $event" class="select-control" required>
+                    <option value="">-- select --</option>
+                    <option *ngFor="let flam of flammablelist" value={{flam.Rating}}>{{flam.Name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-2 column lnk">
+                <div class="col-sm-2 fmlabel2left">&nbsp;</div>
+              </div>
+            </div>
+
+
+
+            <!--reactivity-->
+            <div class="row">
+              <div class="col-sm-10 column">
+                <div class="col-sm-3 fmlabel2">Reactivity</div>
+                <div class="col-sm-9 fmdata">
+                  <select [ngModel]="product.Reactive" name="reactive" #name="ngModel" (ngModelChange)="product.Reactive = $event" class="select-control" required>
+                    <option value="">-- select --</option>
+                    <option *ngFor="let reac of reactivelist" value={{reac.Rating}}>{{reac.Name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-2 column lnk">
+                <div class="col-sm-2 fmlabel2left">&nbsp;</div>
+              </div>
+
+            </div>
+            <!--equipment row-->
+            <div class="row">
+              <div class="col-sm-10 column">
+                <div class="col-sm-3 fmlabel2">Protection</div>
+                <div class="col-sm-9 fmdata">
+                  <select [ngModel]="product.Protection" name="protection" #name="ngModel" (ngModelChange)="product.Protection = $event" class="select-control" required>
+                    <option value="">-- select --</option>
+                    <option *ngFor="let equipment of (equipments | async)" value={{equipment.Rating}}>{{equipment.Description}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-2 column lnk">
+                <div class="col-sm-4 fmlabel2left">&nbsp;</div>
+              </div>
+            </div>
+
+          </div>
+          <!--FILE ATTACHMENTS-->
+          <!--COMMENTS row-->
+          <div class="row">
+            <div class="col-sm-12 column">
+              <div class="col-sm-2 fmlabel2">Comments</div>
+              <div class="col-sm-10 fld">
+                <textarea ref-textarea maxlength="999" [(ngModel)]="product.Comments" name="comments" #name="ngModel" class="form-control" rows="4"></textarea>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {{formTouched(productForm.dirty)}}
+    </form>
+   
+     <app-upload-file [SdsidNumber]="product.Sdsid"></app-upload-file> 
+  </div>
+    <div *ngIf="submitted">
+        <div class="panel-heading">
+            <div class="col-sm-6 hdr">Product Summary</div>
+            <div class="col-sm-6 hdr buttton"><button class="btn btn-default" (click)="editable=true; submitted=false"><span class='glyphicon glyphicon-pencil'></span>Edit</button><button class="btn btn-default" (click)="editable = false;this.location.back()"><span class='glyphicon glyphicon-circle-arrow-left'></span>Back</button></div>
+        </div>
+        <div class="container0">
+            <div class="row">
+                <div class="col-sm-6 column">
+                    <div class="col-sm-6 fmlabel">Product Name</div>
+                    <div class="col-sm-6 fmdata">{{ product?.Product1 }}</div>
+                </div>
+                <div class="col-sm-6 column">
+                    <div class="col-sm-6 fmlabel">Synonyms</div>
+                    <div class="col-sm-6 fmdata">{{ product?.CommonName }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 column">
+                    <div class="col-sm-6 fmlabel">Manufacturer</div>
+                    <div class="col-sm-6 fmdata">{{ product?.Manufacturer }}</div>
+                </div>
+                <div class="col-sm-6 column">
+                    <div class="col-sm-6 fmlabel">Manufacturer No.</div>
+                    <div class="col-sm-6 fmdata">{{ product?.ManufacturerNo }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 column">
+                    <div class="col-sm-6 fmlabel">CryoLife Material Number</div>
+                    <div class="col-sm-6 fmdata">{{ product?.MaterialNumber }}</div>
+                </div>
+                <div class="col-sm-6 column">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 column">
+                    <div class="col-sm-6 fmlabel">Revision Date</div>
+                    <div class="col-sm-6 fmdata">{{ product?.DateRevision | date : 'MM/dd/yyyy' }}</div>
+                </div>
+                <div class="col-sm-6 column">
+                    <div class="col-sm-6 fmlabel">Last Reviewed Internally</div>
+                    <div class="col-sm-6 fmdata">{{ product?.DateReviewed | date : 'MM/dd/yyyy' }}</div>
+                </div>
+            </div>
+            </div>
+            <div class="panel-heading">
+                <div class="col-sm-12 hdr">HMIG/HMIS</div>
+            </div>
+
+            <div class="container1">
+            
+                <div class="ratings">
+                    <div class="row">
+                        <div class="col-sm-6 column">
+                            <div class="col-sm-4 fmlabel">Health</div>
+                            <div class="col-sm-8">{{ product?.Health}}</div>
+                        </div>
+                        <div class="col-sm-6 column">
+                          <div class="col-sm-4 fmlabel">&nbsp;</div>
+                            <div class="col-sm-8">&nbsp;</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 column">
+                            <div class="col-sm-4 fmlabel">Flammibility</div>
+                            <div class="col-sm-8">{{ product?.Flammibility}}</div>
+                        </div>
+                        <div class="col-sm-6 column">
+                          <div class="col-sm-4 fmlabel">&nbsp;</div>
+                            <div class="col-sm-8">&nbsp;</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 column">
+                            <div class="col-sm-4 fmlabel">Reactive</div>
+                            <div class="col-sm-8">{{ product?.Reactive}}</div>
+                        </div>
+                        <div class="col-sm-6 column">
+                          <div class="col-sm-4 fmlabel">&nbsp;</div>
+                            <div class="col-sm-8">&nbsp;</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 column">
+                            <div class="col-sm-4 fmlabel">Protection</div>
+                            <div class="col-sm-8">{{ product?.Protection}}</div>
+                        </div>
+                        <div class="col-sm-6 column">
+                          <div class="col-sm-4 fmlabel">&nbsp;</div>
+                            <div class="col-sm-8">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+                <!--FILES-->
+                <div class="row">
+                    
+                    <div class="col-sm-12 column">
+                        <div class="col-sm-3 fmlabel">File Attachments</div>
+                        <div class="col-sm-9">
+
+                            <table class="table table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>File Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of files">
+                                        <td><a href="{{fileAPIURL}}FileLibrary/{{item.FileName}}" target="_blank">{{item.FileName}}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--other information-->
+                <div class="row">
+                    <div class="col-sm-12 column">
+                        <div class="col-sm-3 fmlabel">Comments/Notes</div>
+                        <div class="col-sm-9 fld">{{ product?.Comments }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>

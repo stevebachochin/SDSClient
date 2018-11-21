@@ -1,0 +1,75 @@
+input {
+    width: 95%;
+}
+
+input.ng-invalid, select.ng-invalid {
+    border-left: 5px solid #a94442;
+}
+
+input.ng-valid, select.ng-valid {
+    border-left: 5px solid #42A948;
+
+
+}
+
+
+
+.fmlabel, .fmlabel2 {
+  color: #2d6da4;
+  padding-left: 15px;
+  font-weight: 600;
+  text-align:left;
+}
+
+
+.fmlabel2{
+padding-top: 5px;
+}
+
+.fmdata {
+  text-align: left;
+}
+
+.panel-primary {
+  border-color: lightgray;
+}
+
+  .panel-primary > .panel-heading {
+    color: black;
+    font-weight: 600;
+    background-color: white;
+    border-color: white;
+    margin-bottom: 35px;
+  }
+
+
+.hdr {
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  font-weight: 600;
+  color: #7C0A02;
+  display: block;
+  width:100%;
+}
+
+.buttton {
+  text-align: right;
+}
+
+.column {
+  margin-bottom: 20px;
+}
+
+.fld{
+  text-align:left;
+}
+
+td {
+  text-align:left;
+}
+
+select {
+  height: 29px;
+}
